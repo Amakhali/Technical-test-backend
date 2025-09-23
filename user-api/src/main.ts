@@ -8,6 +8,7 @@ async function bootstrap() {
   app.useStaticAssets(join(__dirname, '..', 'uploads', 'profile_photos'), {
     prefix: '/uploads/profile_photos/',
   });
+  app.enableCors();
   await app.listen(process.env.PORT ?? 3000);
 }
 bootstrap();
