@@ -14,9 +14,8 @@ export class UserController {
   @UseInterceptors(FileInterceptor('profilePhoto', multerConfig))
   async create(
     @UploadedFile() file: Express.Multer.File,
-    @Body() body: string,
+    @Body() createUserDto: CreateUserDto,
   ) {
-    const createUserDto: CreateUserDto = JSON.parse(body);
     if (file && createUserDto.userInfo) {
       createUserDto.userInfo.profilePhoto = file.path;
     }
@@ -42,9 +41,8 @@ export class UserController {
   async update(
     @Param('id') id: string,
     @UploadedFile() file: Express.Multer.File,
-    @Body() body: string,
+    @Body() updateUserDto: UpdateUserDto,
   ) {
-    const updateUserDto: UpdateUserDto = JSON.parse(body);
     if (file && updateUserDto.userInfo) {
       updateUserDto.userInfo.profilePhoto = file.path;
     }
